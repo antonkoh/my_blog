@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to t('.back_to_post'), @post %> |
-<td><%= link_to t('common.destroy'), @comment, method: :delete, data: { confirm: t('common.are_you_sure') } %></td>
+<%= link_with_icon @post, 'arrow-left', title: t('.back_to_post') %> |
+<td><%= link_with_icon @comment, 'trash-o', title: t('common.destroy'), method: :delete, data: { confirm: t('common.are_you_sure') } %></td>

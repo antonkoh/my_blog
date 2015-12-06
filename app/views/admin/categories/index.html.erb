@@ -6,9 +6,9 @@
   <% @categories.each do |category| %>
       <tr>
         <td><%= category.title %></td>
-        <td><%= link_to t('common.show'), category %></td>
-        <td><%= link_to t('common.edit'), edit_admin_category_path(category) %></td>
-        <td><%= link_to t('common.destroy'), [:admin,category], method: :delete, data: { confirm: t('common.are_you_sure') } %></td>
+        <td><%= link_with_icon(category, 'eye') %></td>
+        <td><%= link_with_icon(edit_admin_category_path(category), 'pencil') %></td>
+        <td><%= link_with_icon([:admin,category], 'trash-o', method: :delete, data: { confirm: t('common.are_you_sure') }) %></td>
       </tr>
   <% end %>
   </tbody>

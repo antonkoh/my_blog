@@ -3,7 +3,7 @@
   <%= comment.body %>
   <br>
   <% if user_signed_in? && current_user.can_edit?(comment) %>
-    <em><%= link_to t('common.edit'), edit_comment_path(comment) %></em>   |
-    <em><%= link_to t('common.destroy'), comment, method: :delete, data: { confirm: t('common.are_you_sure') } %></em>
+    <em><%= link_with_icon edit_comment_path(comment), 'pencil' %></em>   |
+    <em><%= link_with_icon comment, 'trash-o', method: :delete, data: { confirm: t('common.are_you_sure') } %></em>
   <% end %>
 </p>

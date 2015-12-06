@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to t('common.show'), @post %> |
-<%= link_to t('common.back'), posts_path %>
+<%= link_with_icon @post, 'eye', title: t('common.show') %> |
+<%= link_with_icon posts_path, 'arrow-left', title: t('common.back') %>

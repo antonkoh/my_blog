@@ -22,15 +22,15 @@
 
 <% post_type = (post.draft? ? t('.draft') : t('.post')) %>
 <% if user_signed_in? && current_user.can_edit?(post) %>
-    <em><%= link_to "#{t('common.edit')} #{post_type}", edit_post_path(post) %></em>
-    <em>|  <%= link_to "#{t('common.destroy')} #{post_type}", post, method: :delete, data: { confirm: t('common.are_you_sure') } %></em>
+    <em><%= link_with_icon edit_post_path(post), 'pencil', title: "#{t('common.edit')} #{post_type}" %></em>
+    <em>|  <%= link_with_icon post, 'trash-o', title: "#{t('common.destroy')} #{post_type}", method: :delete, data: { confirm: t('common.are_you_sure') } %></em>
     <% if user_signed_in? && current_user.is_admin? # ---- ADMIN   %>
         <% if post.draft? || post.moderated? %>
-            <strong><em>|  <%= link_to t('.approve'), publish_post_path(post), method: :put, data: { confirm: t('common.are_you_sure') } %></em></strong>
+            <strong><em>|  <%= link_with_icon publish_post_path(post), 'thumbs-o-up', title: t('.approve'), method: :put, data: { confirm: t('common.are_you_sure') } %></em></strong>
         <% end %>
         <% if post.approved? || post.moderated? %>
             <% if post.user.present? %>
-                  <strong><em>|  <%= link_to t('.decline'), return_to_draft_post_path(post), method: :put, data: { confirm: t('common.are_you_sure') } %></em></strong>
+                  <strong><em>|  <%= link_with_icon return_to_draft_post_path(post), 'thumbs-down', title: t('.decline'), method: :put, data: { confirm: t('common.are_you_sure') } %></em></strong>
             <% else %>
               <em>|   (<%= t('.unreturnable') %>)</em>
             <% end %>
@@ -38,10 +38,10 @@
 
     <% else # ---- NOT ADMIN %>
       <% if post.draft? %>
-        <em>|  <%= link_to t('.publish'), publish_post_path(post), method: :put, data: { confirm: t('common.are_you_sure') } %></em>
+        <em>|  <%= link_with_icon publish_post_path(post), 'thumbs-o-up', title: t('.publish'), method: :put, data: { confirm: t('common.are_you_sure') } %></em>
       <% else %>
         <% if post.user.present? %>
-          <em>|  <%= link_to t('.return_to_draft'), return_to_draft_post_path(post), method: :put, data: { confirm: t('common.are_you_sure') } %></em>
+          <em>|  <%= link_with_icon return_to_draft_post_path(post), 'thumbs-down', title: t('.return_to_draft'), method: :put, data: { confirm: t('common.are_you_sure') } %></em>
         <% end %>
       <% end %>
     <% end %>
