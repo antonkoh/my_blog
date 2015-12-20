@@ -1,5 +1,5 @@
-<%= form_for(@post) do |f| %>
-  <%= render 'common/errors', object: @post %>
+<%= form_for(post) do |f| %>
+  <%= render 'common/errors', object: post %>
 
   <div class="field">
     <%= f.label :title %><br>
@@ -16,7 +16,7 @@
   <% if user_signed_in? %>
     <div class="field">
       <%= f.label :is_draft, t('.draft') %>
-      <%= check_box_tag :is_draft, "is_draft", @post.draft? %>
+      <%= check_box_tag :is_draft, "is_draft", post.draft? %>
       <% if user_signed_in? && current_user.is_admin? %>
           <em><%= t('.publish_by_admin')%></em>
       <% end %>

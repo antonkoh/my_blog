@@ -1,7 +1,7 @@
 <h1><%= t('.title')%></h1>
 
 
-<%= render 'form' %>
+<%= render 'form', category: @category %>
 
 <%= link_with_icon @category, 'eye', title: t('common.show') %> |
 <%= link_with_icon admin_categories_path, 'arrow-left', title: t('common.back') %>

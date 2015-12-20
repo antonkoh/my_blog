@@ -20,9 +20,14 @@
 
 <div>
 
+<% inline = false unless local_assigns[:inline] %>
 <% post_type = (post.draft? ? t('.draft') : t('.post')) %>
 <% if user_signed_in? && current_user.can_edit?(post) %>
-    <em><%= link_with_icon edit_post_path(post), 'pencil', title: "#{t('common.edit')} #{post_type}" %></em>
+    <% if inline %>
+      <em><%= link_with_icon '#', 'pencil', title: "#{t('common.edit')} #{post_type}", class: "edit_post_link" %></em>
+    <% else %>
+          <em><%= link_with_icon edit_post_path(post), 'pencil', title: "#{t('common.edit')} #{post_type}" %></em>
+    <% end %>
     <em>|  <%= link_with_icon post, 'trash-o', title: "#{t('common.destroy')} #{post_type}", method: :delete, data: { confirm: t('common.are_you_sure') } %></em>
     <% if user_signed_in? && current_user.is_admin? # ---- ADMIN   %>
         <% if post.draft? || post.moderated? %>

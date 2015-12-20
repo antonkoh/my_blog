@@ -1,9 +1,19 @@
-<p><em><%= comment.user.present? ? comment.user.email : t('.anonymous') %> <%=t('.wrote')%>:</em>
-  <br>
-  <%= comment.body %>
-  <br>
+<p><div class = "read_section" data-id="<%= comment.id%>">
+    <em><%= comment.user.present? ? comment.user.email : t('.anonymous') %> <%=t('.wrote')%>:</em>
+    <br>
+    <%= comment.body %>
+  </div>
+
   <% if user_signed_in? && current_user.can_edit?(comment) %>
-    <em><%= link_with_icon edit_comment_path(comment), 'pencil' %></em>   |
-    <em><%= link_with_icon comment, 'trash-o', method: :delete, data: { confirm: t('common.are_you_sure') } %></em>
+    <div class = "read_section" data-id="<%= comment.id%>">
+
+      <em><%= link_with_icon '#', 'pencil', class: "edit_comment_link" %></em>   |
+      <em><%= link_with_icon comment, 'trash-o', method: :delete, data: { confirm: t('common.are_you_sure') } %></em>
+    </div>
+    <div class = "edit_section hidden" data-id="<%= comment.id%>">
+      <%= render 'comments/form', comment: comment %>
+      <em><%= link_with_icon '#', 'ban', title: "#{t('common.cancel')}", class: "cancel_edit_comment_link" %></em>
+    </div>
   <% end %>
+<br>
 </p>

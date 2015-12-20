@@ -1,13 +1,17 @@
+<div class="read_section" data-id = "0">
+  <h3>
+    <%= @post.title %>
+  </h3>
+  <%= render 'posts/post_additional_info', post: @post, inline: true %>
 
-<h3>
-  <%= @post.title %>
-</h3>
-<%= render 'posts/post_additional_info', post: @post %>
-
-
-<p>
-  <%= @post.body %>
-</p>
+  <p>
+    <%= @post.body %>
+  </p>
+</div>
+<div class="edit_section hidden" data-id = "0">
+  <%= render 'form', post: @post %>
+  <em><%= link_with_icon '#', 'ban', title: "#{t('common.cancel')}", class: "cancel_edit_post_link" %></em>
+</div>
 
 <% if @post.approved? %>
   <% if user_signed_in? && @post.user != current_user && !@post.subscribers.include?(current_user) %>
@@ -25,7 +29,7 @@
 
 
   <h4><%= t('.new_comment')%></h4>
-  <%= render 'comments/form' %>
+  <%= render 'comments/form', comment: @comment %>
 <% end %>
 
 

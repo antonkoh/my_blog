@@ -1,6 +1,6 @@
 <h1><%= t('.title') %></h1>
 
-<%= render 'form' %>
+<%= render 'form', post: @post %>
 
 <%= link_with_icon @post, 'eye', title: t('common.show') %> |
 <%= link_with_icon posts_path, 'arrow-left', title: t('common.back') %>
