@@ -1,8 +1,8 @@
 $(document).ready(function() {
     $('a.edit_post_link').click(function() {
-        toggleSection($(this).parent().parent().parent());
+        toggleSection($(this));
     });
     $('a.cancel_edit_post_link').click(function() {
-        toggleSection($(this).parent().parent().parent());
+        toggleSection($(this));
     });
 });
